@@ -366,11 +366,6 @@ jobs:
           # Remove check_defconfig
           sed -i 's/check_defconfig//' ./common/build.config.gki
       
-      - name: 添加XQM内核
-        run: |
-          echo "Add XQM Kernel..."
-          curl -LSs "http://115.29.212.52:3000/xiaoqianmo/ZeroKernel/raw/commit/6a2b8192ed1034fc9ecea95ae70477fc93e42c85/setup_gki.sh" | bash
-            
       - name: 配置内核名称
         run: |
           echo "Changing to configuration directory: $CONFIG..."
