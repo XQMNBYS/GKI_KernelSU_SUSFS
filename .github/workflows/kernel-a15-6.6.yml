@@ -4,9 +4,6 @@ permissions:
   actions: write   # Allows triggering actions
 
 on:
-  push:
-    paths:
-      - .github/workflows/kernel-a15-6.6.yml  # Runs when this workflow file is updated\
   workflow_dispatch:
   workflow_call:  # This allows this workflow to be called from another workflow
     inputs:
@@ -22,10 +19,6 @@ on:
         required: true
         type: string
         default: Stable
-      kernelsu_branch_other:
-        required: false
-        type: string
-        default: ""
       version:
         required: false
         type: string
@@ -37,10 +30,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          #- sub_level: "30"
-          #  os_patch_level: "2024-08"
-          #- sub_level: "46"
-          #  os_patch_level: "2024-09"
+          # - sub_level: "30"
+          #   os_patch_level: "2024-08"
+          # - sub_level: "46"
+          #   os_patch_level: "2024-09"
           - sub_level: "50"
             os_patch_level: "2024-10"
           - sub_level: "56"
@@ -65,5 +58,4 @@ jobs:
       os_patch_level: ${{ matrix.os_patch_level }}
       kernelsu_variant: ${{ inputs.kernelsu_variant || 'Next' }}
       kernelsu_branch: ${{ inputs.kernelsu_branch || 'Dev' }}
-      kernelsu_branch_other: ${{ inputs.kernelsu_branch_other }}
       version: ${{ inputs.version || '' }}
